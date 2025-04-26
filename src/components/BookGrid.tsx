@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from 'react';
 import { Book } from '@/types';
-import Link from 'next/link';
 
 // Import styles
 import 'ag-grid-community/styles/ag-grid.css';
@@ -33,8 +32,6 @@ function SimpleBookTable({ books }: BookGridProps) {
                     <th className="py-2 px-4 text-left">Author</th>
                     <th className="py-2 px-4 text-left">Genre</th>
                     <th className="py-2 px-4 text-left">Year</th>
-                    <th className="py-2 px-4 text-left">Status</th>
-                    <th className="py-2 px-4 text-left">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,22 +41,6 @@ function SimpleBookTable({ books }: BookGridProps) {
                         <td className="py-2 px-4">{book.author}</td>
                         <td className="py-2 px-4">{book.genre}</td>
                         <td className="py-2 px-4">{book.publicationYear}</td>
-                        <td className="py-2 px-4">
-                <span
-                    className={`px-2 py-1 text-xs rounded-full ${
-                        book.available
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
-                    }`}
-                >
-                  {book.available ? "Available" : "Borrowed"}
-                </span>
-                        </td>
-                        <td className="py-2 px-4">
-                            <Link href={`/books/${book.id}`} className="text-blue-600 hover:text-blue-800">
-                                View Details
-                            </Link>
-                        </td>
                     </tr>
                 ))}
                 </tbody>
@@ -112,52 +93,11 @@ export function BookGrid({ books }: BookGridProps) {
         return <LoadingGrid />;
     }
 
-    // Status cell renderer as a plain function
-    const StatusCellRenderer = (params: any) => {
-        const available = params.value;
-        return (
-            <span
-                className={`px-2 py-1 text-xs rounded-full ${
-                    available ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                }`}
-            >
-        {available ? 'Available' : 'Borrowed'}
-      </span>
-        );
-    };
-
-    // Actions cell renderer as a plain function
-    const ActionsCellRenderer = (params: any) => {
-        return (
-            <Link
-                href={`/books/${params.data?.id}`}
-                className="text-blue-600 hover:text-blue-800"
-            >
-                View Details
-            </Link>
-        );
-    };
-
     const columnDefs = [
         { field: 'title', headerName: 'Title', flex: 2, filter: true, sortable: true },
         { field: 'author', headerName: 'Author', flex: 1.5, filter: true, sortable: true },
         { field: 'genre', headerName: 'Genre', flex: 1, filter: true, sortable: true },
-        { field: 'publicationYear', headerName: 'Year', flex: 0.8, filter: 'agNumberColumnFilter', sortable: true },
-        {
-            field: 'available',
-            headerName: 'Status',
-            flex: 1,
-            cellRenderer: StatusCellRenderer,
-            filter: true,
-            sortable: true
-        },
-        {
-            headerName: 'Actions',
-            flex: 1,
-            cellRenderer: ActionsCellRenderer,
-            sortable: false,
-            filter: false
-        }
+        { field: 'publicationYear', headerName: 'Year', flex: 0.8, filter: 'agNumberColumnFilter', sortable: true }
     ];
 
     const defaultColDef = {

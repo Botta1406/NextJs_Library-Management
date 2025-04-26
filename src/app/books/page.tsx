@@ -1,14 +1,38 @@
-// app/books/page.tsx
+
 "use client";
 
+import { useState, useEffect } from "react";
 import { getAllBooks } from "@/lib/db";
 import { BookGrid } from "@/components/BookGrid";
-import { useState } from "react";
+import { Book } from "@/types";
 
 export default function BooksPage() {
-    // In a real application, you would fetch this data from an API
-    const books = getAllBooks();
+    // State to hold books data
+    const [books, setBooks] = useState<Book[]>([]);
     const [viewMode, setViewMode] = useState<'grid' | 'cards'>('grid');
+
+    // Load initial books
+    useEffect(() => {
+        // In a real application, you would fetch this data from an API
+        const initialBooks = getAllBooks();
+        setBooks(initialBooks);
+    }, []);
+
+    // Handler to add a new book
+    const handleAddBook = (newBook: Omit<Book, 'id'>) => {
+        // In a real app, you would make an API call here
+        // For now, we'll just generate an ID and add it to state
+        const bookWithId: Book = {
+            ...newBook,
+            id: `book-${Date.now()}`,
+            available: true // Default to available
+        };
+
+        setBooks(prevBooks => [...prevBooks, bookWithId]);
+
+        // In a real app: Call API to persist the new book
+        // Example: await addBookToDatabase(bookWithId);
+    };
 
     return (
         <div>
@@ -39,7 +63,7 @@ export default function BooksPage() {
             </div>
 
             {viewMode === 'grid' ? (
-                <BookGrid books={books} />
+                <BookGrid books={books} onAddBook={handleAddBook} />
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {books.map(book => (
@@ -50,23 +74,8 @@ export default function BooksPage() {
                             <div className="p-4">
                                 <h3 className="text-xl font-semibold mb-2">{book.title}</h3>
                                 <p className="text-gray-600 mb-2">by {book.author}</p>
-                                <div className="mb-4">
-                  <span
-                      className={`px-2 py-1 text-xs rounded-full ${
-                          book.available
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
-                      }`}
-                  >
-                    {book.available ? "Available" : "Borrowed"}
-                  </span>
-                                </div>
-                                <a
-                                    href={`/books/${book.id}`}
-                                    className="text-blue-600 hover:text-blue-800"
-                                >
-                                    View Details
-                                </a>
+                                <p className="text-gray-600 mb-2">Genre: {book.genre}</p>
+                                <p className="text-gray-600 mb-2">Year: {book.publicationYear}</p>
                             </div>
                         </div>
                     ))}
@@ -75,4 +84,3 @@ export default function BooksPage() {
         </div>
     );
 }
-
