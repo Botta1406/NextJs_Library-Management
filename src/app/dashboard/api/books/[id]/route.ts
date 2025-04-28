@@ -1,4 +1,48 @@
-// app/api/books/[id]/route.ts
+// // app/api/books/[id]/route.ts
+// import { NextResponse } from "next/server";
+// import { getBookById, updateBook } from "@/lib/db";
+//
+// export async function GET(
+//     request: Request,
+//     { params }: { params: { id: string } }
+// ) {
+//     const book = getBookById(params.id);
+//
+//     if (!book) {
+//         return NextResponse.json(
+//             { error: "Book not found" },
+//             { status: 404 }
+//         );
+//     }
+//
+//     return NextResponse.json({ book });
+// }
+//
+// export async function PATCH(
+//     request: Request,
+//     { params }: { params: { id: string } }
+// ) {
+//     try {
+//         const body = await request.json();
+//         const book = getBookById(params.id);
+//
+//         if (!book) {
+//             return NextResponse.json(
+//                 { error: "Book not found" },
+//                 { status: 404 }
+//             );
+//         }
+//
+//         const updatedBook = updateBook(params.id, body);
+//         return NextResponse.json({ book: updatedBook });
+//     } catch (error) {
+//         return NextResponse.json(
+//             { error: "Invalid request body" },
+//             { status: 400 }
+//         );
+//     }
+// }
+// 1. API Route file - app/api/books/[id]/route.ts
 import { NextResponse } from "next/server";
 import { getBookById, updateBook } from "@/lib/db";
 
@@ -6,7 +50,7 @@ export async function GET(
     request: Request,
     { params }: { params: { id: string } }
 ) {
-    const book = getBookById(params.id);
+    const book = await getBookById(params.id);
 
     if (!book) {
         return NextResponse.json(
@@ -24,7 +68,7 @@ export async function PATCH(
 ) {
     try {
         const body = await request.json();
-        const book = getBookById(params.id);
+        const book = await getBookById(params.id);
 
         if (!book) {
             return NextResponse.json(
@@ -33,9 +77,10 @@ export async function PATCH(
             );
         }
 
-        const updatedBook = updateBook(params.id, body);
+        const updatedBook = await updateBook(params.id, body);
         return NextResponse.json({ book: updatedBook });
     } catch (error) {
+        console.error("Error processing request:", error);
         return NextResponse.json(
             { error: "Invalid request body" },
             { status: 400 }
