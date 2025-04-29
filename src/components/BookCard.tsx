@@ -12,8 +12,8 @@ export function BookCard({ book }: BookCardProps) {
             <div className="h-48 bg-gray-200 flex items-center justify-center">
                 <div className="text-gray-500">Cover Image</div>
             </div>
-            <div className="p-4">
-                <h3 className="text-xl font-semibold mb-2">{book.title}</h3>
+            <div className="p-4 ">
+                <h3 className="text-xl font-semibold mb-2 ">{book.title}</h3>
                 <p className="text-gray-600 mb-2">by {book.author}</p>
                 <div className="mb-4">
           <span

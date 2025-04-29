@@ -4,9 +4,9 @@ import Link from "next/link";
 export default function Home() {
   return (
       <div className="flex flex-col items-center justify-center min-h-[70vh]">
-        <h1 className="text-4xl font-bold mb-8">Library Management System</h1>
+        <h1 className="text-4xl text-gray-700 font-bold mb-8">Library Management System</h1>
         <div className="text-center">
-          <p className="text-xl mb-8">
+          <p className="text-xl text-gray-700 mb-8">
             Welcome to our Library Management System. Browse our collection of books
             and manage your borrowings with ease.
           </p>

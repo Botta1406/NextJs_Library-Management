@@ -29,7 +29,7 @@ export function BooksView({ books }: BooksViewProps) {
                     </button>
                     <button
                         onClick={() => setViewMode('cards')}
-                        className={`px-4 py-2 rounded ${
+                        className={`px-4 py-2 rounded  ${
                             viewMode === 'cards'
                                 ? 'bg-blue-600 text-white'
                                 : 'bg-gray-200 text-gray-700'
@@ -43,7 +43,7 @@ export function BooksView({ books }: BooksViewProps) {
             {viewMode === 'grid' ? (
                 <BookGrid books={books} />
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6">
                     {books.map((book) => (
                         <BookCard key={book.id} book={book} />
                     ))}
