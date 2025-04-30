@@ -131,6 +131,8 @@
 //     );
 // }
 // components/DashboardGrid.tsx
+
+// components/DashboardGrid.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -139,6 +141,7 @@ import { CustomDashboardTable } from "./CustomDashboardTable";
 
 interface DashboardGridProps {
     books: Book[];
+    type:string;
 }
 
 export function DashboardGrid({ books }: DashboardGridProps) {
@@ -160,55 +163,55 @@ export function DashboardGrid({ books }: DashboardGridProps) {
         );
     }
 
-    const dashboardCards = [
-        {
-            label: "All Books",
-            count: books.length,
-            color: "blue",
-            description: "Click to view all books in the library",
-            onClick: () => setActiveTab("all"),
-            icon: (
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-            ),
-        },
-        {
-            label: "Borrowed Books",
-            count: borrowedBooks.length,
-            color: "amber",
-            description: "Click to view currently borrowed books",
-            onClick: () => setActiveTab("borrowed"),
-            icon: (
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-            ),
-        },
-        {
-            label: "Available Books",
-            count: availableBooks.length,
-            color: "green",
-            description: "Click to view books available for borrowing",
-            onClick: () => setActiveTab("available"),
-            icon: (
-                <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                />
-            ),
-        },
-    ];
-
     if (activeTab === null) {
+        const dashboardCards = [
+            {
+                label: "All Books",
+                count: books.length,
+                color: "blue",
+                description: "Click to view all books in the library",
+                onClick: () => setActiveTab("all"),
+                iconPath: (
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                ),
+            },
+            {
+                label: "Borrowed Books",
+                count: borrowedBooks.length,
+                color: "amber",
+                description: "Click to view currently borrowed books",
+                onClick: () => setActiveTab("borrowed"),
+                iconPath: (
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                ),
+            },
+            {
+                label: "Available Books",
+                count: availableBooks.length,
+                color: "green",
+                description: "Click to view books available for borrowing",
+                onClick: () => setActiveTab("available"),
+                iconPath: (
+                    <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                    />
+                ),
+            },
+        ];
+
         return (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {dashboardCards.map((card) => (
@@ -220,9 +223,7 @@ export function DashboardGrid({ books }: DashboardGridProps) {
                         <div className="flex items-center justify-between">
                             <div>
                                 <h3 className="text-lg font-medium text-gray-900">{card.label}</h3>
-                                <p className={`mt-1 text-3xl font-semibold text-${card.color}-600`}>
-                                    {card.count}
-                                </p>
+                                <p className={`mt-1 text-3xl font-semibold text-${card.color}-600`}>{card.count}</p>
                             </div>
                             <div className={`p-3 bg-${card.color}-50 rounded-full`}>
                                 <svg
@@ -232,7 +233,7 @@ export function DashboardGrid({ books }: DashboardGridProps) {
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"
                                 >
-                                    {card.icon}
+                                    {card.iconPath}
                                 </svg>
                             </div>
                         </div>
@@ -243,11 +244,8 @@ export function DashboardGrid({ books }: DashboardGridProps) {
         );
     }
 
-    const booksToDisplay = activeTab === "all"
-        ? books
-        : activeTab === "borrowed"
-            ? borrowedBooks
-            : availableBooks;
+    const booksToDisplay =
+        activeTab === "all" ? books : activeTab === "borrowed" ? borrowedBooks : availableBooks;
 
     const tableType = activeTab === "borrowed" ? "borrowed" : "available";
 
