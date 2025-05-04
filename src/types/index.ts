@@ -1,6 +1,20 @@
-// lib/types/index.ts
+// // lib/types/index.ts
+// export interface Book {
+//     id:  string | number;
+//     title: string;
+//     author: string;
+//     coverImage: string;
+//     description: string;
+//     isbn: string;
+//     available: boolean;
+//     dueDate?: string;
+//     borrowedBy?: string;
+//     genre?: string;
+//     publicationYear?: number;
+// }
+
 export interface Book {
-    id:  string | number;
+    id: string | number;
     title: string;
     author: string;
     coverImage: string;
@@ -9,6 +23,7 @@ export interface Book {
     available: boolean;
     dueDate?: string;
     borrowedBy?: string;
-    genre?: string;
-    publicationYear?: number;
+    genre: string;               // <- Now required
+    publicationYear: number;     // <- Now required
 }
+

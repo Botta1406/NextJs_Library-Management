@@ -19,7 +19,7 @@ export default async function BookDetailPage({ params }: { params: { id: string 
             <div className="book-info">
                 <p className="author">By: {book.author}</p>
                 <p className="description">{book.description}</p>
-                {book.publishedYear && <p>Published: {book.publishedYear}</p>}
+                {/*{book.publishedYear && <p>Published: {book.publishedYear}</p>}*/}
                 {book.genre && <p>Genre: {book.genre}</p>}
             </div>
 
