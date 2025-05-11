@@ -8,9 +8,9 @@ export function NavBar() {
     const pathname = usePathname();
 
     const navItems = [
-        { label: "Home", path: "/" },
-        { label: "Books", path: "/books" },
-        { label: "Dashboard", path: "/dashboard" },
+        // { label: "Home", path: "/" },
+        // { label: "Books", path: "/books" },
+        // { label: "Dashboard", path: "/dashboard" },
     ];
 
     return (
