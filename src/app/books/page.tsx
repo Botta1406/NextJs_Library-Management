@@ -2,7 +2,7 @@
 // components/BooksPage.tsx
 "use client"
 import { useState, useEffect } from "react";
-import { getAllBooks, addBook } from "@/lib/db";
+import { getAllBooks } from "@/lib/db";
 import { BookGrid } from "@/components/BookGrid";
 import { Book } from "@/types";
 import Link from "next/link";
@@ -19,17 +19,6 @@ export default function BooksPage() {
         };
         fetchBooks();
     }, []);
-
-    const handleAddBook = async (newBook: Omit<Book, 'id'>) => {
-        try {
-            const addedBook = await addBook(newBook);
-            setBooks(prevBooks => [...prevBooks, addedBook]);
-        } catch (error) {
-            console.error("Error adding book:", error);
-            alert("Failed to add book.");
-        }
-    };
-
     return (
         <div>
             <div className="flex justify-between items-center mb-6">
@@ -51,7 +40,7 @@ export default function BooksPage() {
             </div>
 
             {viewMode === 'grid' ? (
-                <BookGrid books={books} onAddBook={handleAddBook} />
+                <BookGrid books={books}/>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {books.map(book => (

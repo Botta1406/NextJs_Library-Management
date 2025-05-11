@@ -1,11 +1,12 @@
-//lib/db.ts
+// lib/db.ts
 import { Book } from "@/types";
+
 let books: Book[] = [
     {
         id: "1",
         title: "The Great Gatsby",
         author: "F. Scott Fitzgerald",
-        coverImage: "public/images/gatsby.jpg",
+        coverImage: "/images/gatsby.jpg", // Remove "public/"
         description: "A story of wealth, love, and tragedy in the Jazz Age.",
         isbn: "9780743273565",
         available: true,
@@ -16,7 +17,7 @@ let books: Book[] = [
         id: "2",
         title: "To Kill a Mockingbird",
         author: "Harper Lee",
-        coverImage: "public/images/mockingbird.jpg",
+        coverImage: "/images/mockingbird.jpg", // Remove "public/"
         description: "A story of racial injustice and childhood innocence in the American South.",
         isbn: "9780061120084",
         available: false,
@@ -29,7 +30,7 @@ let books: Book[] = [
         id: "3",
         title: "1984",
         author: "George Orwell",
-        coverImage: "public/images/1984.jpg",
+        coverImage: "/images/1984.jpg", // Remove "public/"
         description: "A dystopian novel about totalitarianism and surveillance.",
         isbn: "9780451524935",
         available: true,
@@ -40,7 +41,7 @@ let books: Book[] = [
         id: "4",
         title: "The Hobbit",
         author: "J.R.R. Tolkien",
-        coverImage: "public/images/hobbit.jpg",
+        coverImage: "/images/hobbit.jpg", // Remove "public/"
         description: "A fantasy novel about the adventures of hobbit Bilbo Baggins.",
         isbn: "9780547928227",
         available: true,
@@ -51,7 +52,7 @@ let books: Book[] = [
         id: "5",
         title: "Harry Potter and the Philosopher's Stone",
         author: "J.K. Rowling",
-        coverImage: "public/images/harrypotter.jpg",
+        coverImage: "/images/harrypotter.jpg", // Remove "public/"
         description: "The first book in the Harry Potter series.",
         isbn: "9780747532699",
         available: false,
@@ -64,7 +65,7 @@ let books: Book[] = [
         id: "6",
         title: "Pride and Prejudice",
         author: "Jane Austen",
-        coverImage: "public/images/pride.jpg",
+        coverImage: "/images/pride.jpg", // Remove "public/"
         description: "A romantic novel of manners set in rural England.",
         isbn: "9780141439518",
         available: true,
