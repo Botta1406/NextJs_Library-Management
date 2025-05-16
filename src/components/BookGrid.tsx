@@ -122,12 +122,12 @@ export function BookGrid({ books }: BookGridProps) {
                 pagination={true}
                 paginationPageSize={10}
                 onGridReady={onGridReady}
-                animateRows={true}
+                // animateRows={true}
                 rowSelection="single"
                 suppressReactUi={true}
                 domLayout="normal"
                 suppressMovableColumns={true}
-                containerStyle={{ height: '100%', width: '100%' }}
+                containerStyle={{ height: '88%', width: '100%' }}
             />
         </div>
     );
