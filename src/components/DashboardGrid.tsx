@@ -4,7 +4,7 @@
 
 import { useState, useEffect } from "react";
 import { Book } from "@/types";
-import { CustomDashboardTable } from "./CustomDashboardTable";
+import {CustomDashboardTable} from "@/components/CustomDashboardTable";
 
 interface DashboardGridProps {
     books: Book[];
@@ -80,7 +80,7 @@ export function DashboardGrid({ books }: DashboardGridProps) {
         ];
 
         return (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
                 {dashboardCards.map((card) => (
                     <div
                         key={card.label}

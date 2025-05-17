@@ -114,7 +114,7 @@ export function BookGrid({ books }: BookGridProps) {
     };
 
     return (
-        <div className="ag-theme-alpine w-full h-[400px]">
+        <div className="ag-theme-alpine w-full h-[520px]">
             <AgGrid
                 rowData={books}
                 columnDefs={columnDefs}
@@ -122,12 +122,12 @@ export function BookGrid({ books }: BookGridProps) {
                 pagination={true}
                 paginationPageSize={10}
                 onGridReady={onGridReady}
-                // animateRows={true}
+                animateRows={true}
                 rowSelection="single"
                 suppressReactUi={true}
                 domLayout="normal"
                 suppressMovableColumns={true}
-                containerStyle={{ height: '88%', width: '100%' }}
+                containerStyle={{ height: '100%', width: '100%' }}
             />
         </div>
     );

@@ -14,7 +14,8 @@
 // }
 
 export interface Book {
-    id: string | number;
+    // id: string | number;
+    id: string;
     title: string;
     author: string;
     coverImage: string;
@@ -22,8 +23,9 @@ export interface Book {
     isbn: string;
     available: boolean;
     dueDate?: string;
-    borrowedBy?: string;
+    borrowedBy?: string | null;
     genre: string;               // <- Now required
     publicationYear: number;     // <- Now required
+
 }
 

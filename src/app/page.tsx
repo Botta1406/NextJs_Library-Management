@@ -43,10 +43,10 @@ export default function Home() {
             {/* Header with decorative elements */}
             <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-blue-600 opacity-10 -skew-y-6 transform origin-top-right h-64"></div>
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  pb-20">
                     <div className="text-center">
-                        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-4">
-                          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-700">
+                        <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 mb-4 mt-8">
+                          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-700 ">
                             A Modern Library Management System with Next.js
                           </span>
                         </h1>
