@@ -50,7 +50,7 @@ export function DashboardGrid({ books }: DashboardGridProps) {
             {
                 label: "Borrowed Books",
                 count: borrowedBooks.length,
-                color: "amber",
+                color: "red",
                 description: "Click to view currently borrowed books",
                 onClick: () => setActiveTab("borrowed"),
                 iconPath: (
